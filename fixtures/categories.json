@@ -1,0 +1,30 @@
+[
+  {
+    "model": "common.category",
+    "pk": 1,
+    "fields": {
+      "name": "Clothing"
+    }
+  },
+  {
+    "model": "common.category",
+    "pk": 2,
+    "fields": {
+      "name": "Jewelry"
+    }
+  },
+  {
+    "model": "common.category",
+    "pk": 3,
+    "fields": {
+      "name": "Drinks"
+    }
+  },
+  {
+    "model": "common.category",
+    "pk": 4,
+    "fields": {
+      "name": "Toys"
+    }
+  }
+]

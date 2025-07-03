@@ -1,0 +1,31 @@
+[
+  {
+    "model": "common.product",
+    "pk": 1,
+    "fields": {
+      "name": "Coca Cola",
+      "description": "A simple soda drink from the 90s",
+      "category_id": 3
+    }
+  },
+
+  {
+    "model": "common.product",
+    "pk": 2,
+    "fields": {
+      "name": "Pepsi",
+      "description": "A simple soda drink from the 90s, not Coca",
+      "category_id": 3
+    }
+  },
+
+  {
+    "model": "common.product",
+    "pk": 3,
+    "fields": {
+      "name": "Fall Sweeter",
+      "description": "Skibidi Toilet",
+      "category_id": 1
+    }
+  }
+]
