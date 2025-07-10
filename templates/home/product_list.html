@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% block title %}Danh sách sản phẩm{% endblock %}
+
+{% block content %}
+<h2 style="margin-bottom: 20px;">🛒 Danh sách sản phẩm</h2>
+
+<div style="display: flex; gap: 30px; align-items: flex-start;">
+
+  <!-- Bên trái: Danh mục -->
+  <aside style="width: 220px;">
+    <h3 style="margin-bottom: 10px;">📂 Danh mục</h3>
+    <ul style="list-style: none; padding: 0; margin: 0;">
+      {% for c in categories %}
+        <li style="margin-bottom: 10px;">
+          <a href="?category={{ c.id }}" style="text-decoration: none; color: #007bff;">
+            {{ c.name }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </aside>
+
+  <!-- Bên phải: Sản phẩm -->
+  <main style="flex: 1;">
+
+    <!-- Nút thêm -->
+    <div style="margin-bottom: 20px;">
+      <a href="{% url 'product_add' %}" style="
+        background-color: #007bff;
+        color: white;
+        padding: 10px 16px;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: bold;
+      ">
+        ➕ Thêm sản phẩm
+      </a>
+    </div>
+
+    <!-- Lưới sản phẩm -->
+    <div style="
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 24px;
+    ">
+      {% for p in products %}
+        <div style="
+          border: 1px solid #ccc;
+          padding: 12px;
+          border-radius: 12px;
+          background-color: #fff;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        ">
+          <!-- Ảnh -->
+          <!-- Ảnh sản phẩm (thật hoặc giả) -->
+      {% if p.image %}
+          <div style="width: 100%; height: 300px; overflow: hidden; display: flex; justify-content: center;">
+            <img src="{{ p.image.url }}" alt="{{ p.name }}" style="
+              height: 100%;
+              width: auto;
+              object-fit: cover;
+              border-radius: 8px;
+              ">
+          </div>
+
+
+      {% else %}
+          <div style="
+              width: 100%;
+              height: 130px;
+              background-color: #e0e0e0;
+              border-radius: 8px;
+              margin-bottom: 12px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: #888;
+              ">
+            Không có ảnh
+          </div>
+        {% endif %}
+
+          <!-- Tên + thông tin -->
+          <h3 style="font-size: 18px; margin-bottom: 8px;">{{ p.name }}</h3>
+          <p style="margin: 0 0 4px;">💰 Giá: <strong>{{ p.price }} đ</strong></p>
+          <p style="margin: 0 0 12px;">📦 Tồn kho: {{ p.stock }}</p>
+
+          <!-- Nút sửa / xoá -->
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <a href="{% url 'product_edit' p.id %}" style="color: #007bff; text-decoration: none;">✏️ Sửa</a>
+
+            <form action="{% url 'product_delete' p.id %}" method="post" style="display:inline;">
+              {% csrf_token %}
+              <button type="submit" style="
+                color: #dc3545;
+                background: none;
+                border: none;
+                cursor: pointer;
+                font-size: 14px;
+              ">
+                🗑 Xoá
+              </button>
+            </form>
+          </div>
+
+          <!-- Nút giỏ -->
+          <button style="
+            margin-top: 10px;
+            width: 100%;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+          ">
+            ➕ Thêm vào giỏ
+          </button>
+        </div>
+      {% endfor %}
+    </div>
+
+  </main>
+</div>
+{% endblock %}

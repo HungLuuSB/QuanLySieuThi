@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<h2 style="margin-bottom: 20px;">📝 {{ title }}</h2>
+
+<div style="max-width: 500px; padding: 24px; background-color: #f8f9fa; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+
+  <form method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 16px;">
+
+    {% csrf_token %}
+    
+    {% for field in form %}
+      <div>
+        <label style="font-weight: bold; display: block; margin-bottom: 6px;">{{ field.label }}</label>
+        {{ field }}
+        {% if field.errors %}
+          <div style="color: red; font-size: 13px;">{{ field.errors }}</div>
+        {% endif %}
+      </div>
+    {% endfor %}
+
+    {% if form.instance.image %}
+      <div>
+        <label>Ảnh hiện tại:</label><br>
+        <img src="{{ form.instance.image.url }}" style="max-width: 100%; max-height: 200px; border-radius: 6px; margin-top: 8px;" />
+      </div>
+    {% endif %}
+
+    <button type="submit" style="
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+    ">
+      💾 Lưu
+    </button>
+  </form>
+
+  <div style="margin-top: 16px;">
+    <a href="{% url 'product_list' %}" style="color: #555; text-decoration: none;">← Quay lại danh sách</a>
+  </div>
+
+</div>
+
+<style>
+  input, select, textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    box-sizing: border-box;
+    background-color: white;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 4px rgba(0,123,255,0.4);
+  }
+</style>
+{% endblock %}

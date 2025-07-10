@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Quản lý siêu thị{% endblock %}</title>
+    <style>
+        body { background-color: white; font-family: sans-serif; }
+        header, footer { background: #007BFF; color: white; padding: 10px; }
+        nav a { margin-right: 10px; color: white; text-decoration: none; }
+        main { padding: 20px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CoopMart</h1>
+        <nav>
+            <a href="/">Trang chủ</a>
+            <a href="/admin/">Quản trị</a>
+            <!-- Bạn có thể thêm link đến các chức năng khác -->
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>© 2025 CoopMart - Quản lý siêu thị</p>
+    </footer>
+</body>
+</html>
