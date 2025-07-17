@@ -1,0 +1,39 @@
+{% extends "_Layout.html" %}
+{% load static %}
+{% block page-title %}
+Admin Dashboard
+{% endblock page-title %}
+
+{% block content %}
+<h1 style="width: 100%; text-align: center;">Add a new product</h1>
+<div class="form-center">
+  <form method="post" class="two-side-form">
+    <div class="form-field full">
+      <label for="product-name">Name</label>
+      <input type="text" name="product-name" value="">
+    </div>
+    <div class="form-field full">
+      <label for="product-desc">Description</label>
+      <input type="text" name="product-desc" value="">
+    </div>
+    <div class="form-field full">
+      <label for="product-price">Price</label>
+      <input type="text" name="product-price" value="">
+    </div>
+    <div class="form-field full">
+      <label for="stock">Stock</label>
+      <input type="text" name="product-price" value="">
+    </div>
+    <div class="form-field full">
+      <label for="Product Description">Category</label>
+      <input type="text" name="category" value="" list="categories">
+      <datalist id="categories">
+        {% for category in categories %}
+        <option value="{{ category.id }}">{{ category.name }}</option>
+        {% endfor %}
+      </datalist>
+    </div>
+    <button class="form-submit-button" type="submit">Create</button>
+  </form>
+</div>
+{% endblock content %}

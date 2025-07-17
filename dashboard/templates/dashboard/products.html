@@ -1,0 +1,37 @@
+{% extends "_Layout.html" %}
+{% load static %}
+{% block page-title %}
+Admin Dashboard | Products
+{% endblock page-title %}
+
+{% block content %}
+<h1 style="width: 100%; text-align: center;">Products Management</h1>
+<div class="action-bar">
+  <div class="action-section">
+    <a href="{% url 'dashboard/add_product' %}">Add New Product</a>
+  </div>
+</div>
+<table class="product-list">
+  <thead>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Category</th>
+    <th>Stock</th>
+  </thead>
+  <tbody>
+    {% for product in products %}
+    <tr>
+      <td>{{ product.id }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.description }}</td>
+      <td>{{ product.price }}</td>
+      <td>{{ product.category.name }}</td>
+      <td>{{ product.stock }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}
+

@@ -1,0 +1,42 @@
+{% extends "_Layout.html" %}
+{% block content %}
+<div id="container" style="width: 75%;">
+    <canvas id="pie-chart"></canvas>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+  <script>
+    var barColors = [
+      "rgba(0,0,255,1.0)",
+      "rgba(0,0,255,0.8)",
+      "rgba(0,0,255,0.6)",
+      "rgba(0,0,255,0.4)",
+      "rgba(0,0,255,0.2)",
+    ];
+    var config = {
+      type: 'pie',
+      data: {
+        datasets: [{
+          data: {{ data|safe }},
+          backgroundColor: barColors,
+          label: 'Categories'
+        }],
+        labels: {{ labels|safe }}
+      },
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: "Number of bought products"
+        }
+      }
+    };
+
+    window.onload = function() {
+      var ctx = document.getElementById('pie-chart').getContext('2d');
+      window.myPie = new Chart(ctx, config);
+    };
+
+  </script>
+
+  {% endblock content %}
