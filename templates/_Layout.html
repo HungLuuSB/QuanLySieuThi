@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {% block page-title %}
+      _Layout
+      {% endblock page-title %}
+    </title>
+    <link href="{% static "css/style.css" %}" rel="stylesheet">
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <div class="side-panel-wrapper">
+        <div class="side-panel">
+          <div class="hero">
+            <img src="https://fit.huflit.edu.vn/wp-content/uploads/2024/12/logo-1024x689.png" alt="">
+          </div>
+          <ul class="method-list">
+            <li class="method-item">
+              <a href="{% url 'dashboard/index' %}">
+                <h3>Dashboard</h3>
+              </a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+      <div class="main-panel-wrapper">
+        <div class="main-panel">
+          {% block content %}
+          {% endblock content %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
