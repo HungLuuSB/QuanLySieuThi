@@ -1,6 +1,8 @@
 from django.shortcuts import redirect, render
-from dashboard.forms import AddProductForm
+from dashboard.forms import AddProductForm, AddCategoryForm
 from common.models import Product, Category
+
+
 # Create your views here.
 #
 
@@ -17,3 +19,18 @@ def index(request):
             p.save()
     context = {"form": AddProductForm()}
     return render(request, "dashboard/index.html")
+
+
+
+
+def add_category(request):
+    if request.method == "POST":
+        form = AddCategoryForm(request.POST)
+        if form.is_valid():
+            c = Category(
+                name = form.cleaned_data['category_name']
+            )
+            c.save()
+    context = {"form": AddCategoryForm()}
+    return render(request, "dashboard/add_category.html", context)
+
