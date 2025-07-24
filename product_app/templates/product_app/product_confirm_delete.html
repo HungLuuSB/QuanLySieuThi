@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Xác nhận xóa</title>
+    <style>
+        .confirm-container {
+            width: 50%;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="confirm-container">
+        <h2>Bạn có chắc chắn muốn xóa "{{ product.name }}"?</h2>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Xác nhận</button>
+            <a href="{% url 'product_list' %}"><button type="button">Hủy</button></a>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách sản phẩm</title>
+    <style>
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .actions a {
+            margin: 0 5px;
+        }
+        .category-section {
+            margin-bottom: 20px;
+        }
+        .category-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Danh sách sản phẩm siêu thị</h1>
+    {% for category, products in products_by_category.items %}
+        <div class="category-section">
+            <h2 class="category-title">{{ category }}</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá (VNĐ)</th>
+                        <th>Số lượng</th>
+                        <th>Mô tả</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                    <tr>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.price }}</td>
+                        <td>{{ product.quantity }}</td>
+                        <td>{{ product.description }}</td>
+                        <td class="actions">
+                            <a href="{% url 'edit_product' product.id %}">Sửa</a> |
+                            <a href="{% url 'delete_product' product.id %}">Xóa</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endfor %}
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="{% url 'add_product' %}">Thêm sản phẩm mới</a>
+    </div>
+</body>
+</html>

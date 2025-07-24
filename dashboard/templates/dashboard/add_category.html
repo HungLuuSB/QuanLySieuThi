@@ -15,8 +15,9 @@
             <h2 class="admin-title"><i class="fas fa-user-shield"></i> Quản trị</h2>
             <nav>
                 <a href="#" class="active"><i class="fas fa-list"></i> Danh mục</a>
-                <a href="#"><i class="fas fa-box"></i> Sản phẩm</a>
+                <a href="{% url "product_list" %}"><i class="fas fa-box"></i> Sản phẩm</a>
                 <a href="#"><i class="fas fa-users"></i> Người dùng</a>
+                <a href="{% url "api/sales_chart" %}"><i class="fas fa-users"></i> Thống kê</a>
                 <a href="#"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
             </nav>
         </aside>
